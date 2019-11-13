@@ -11,7 +11,7 @@ let mainWindow; // UI 인터렉션을 위한 메인 윈도우
 
 let appdie = false;
 
-Menu.setApplicationMenu(null); // 애플리케이션 메뉴를 없앤다.
+//Menu.setApplicationMenu(null); // 애플리케이션 메뉴를 없앤다.
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -43,6 +43,9 @@ function createWindow() {
     }
   });
   topWindow.loadURL(`file://${path.join(__dirname, "../worker/entry.html")}`);
+  topWindow.on('closed', () => {
+    quitApp(); // 백그라운드가 죽는순간 (cmd Q 등) 프로그램은 종료된다.
+  })
   createMainWindow();
 }
 
@@ -55,7 +58,7 @@ app.on("ready", () => {
     { id: "exit", label: "종료", type: "normal" }
   ]);
   contextMenu.getMenuItemById("open").click = function(e) {
-    if (mainWindow === null) {
+    if (!mainWindow) {
       createMainWindow();
     } else {
       mainWindow.show();
@@ -89,6 +92,9 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
   if (mainWindow === null) {
     createMainWindow();
+  } else {
+    mainWindow.show();
+    mainWindow.focus();
   }
 });
 
