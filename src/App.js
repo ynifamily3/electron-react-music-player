@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      gpgkey sign test + comp load test2 : <br/> <Cp text='test테스트'/>
+        백그라운드에서 사운드 재생 중... <br/> <Cp text='test테스트'/>
     </div>
   );
 }
