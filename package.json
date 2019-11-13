@@ -25,7 +25,7 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "electron": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
+    "electron": "cross-env NODE_ENV=dev nodemon --exec \"electron .\"",
     "electron-cold": "cross-env NODE_ENV=dev electron .",
     "start": "cross-env BROWSER=none npm run react-start",
     "react-start": "react-scripts start",
