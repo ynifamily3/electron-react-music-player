@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      comp load test2 : <br/> <Cp text='test테스트'/>
+      gpgkey sign test + comp load test2 : <br/> <Cp text='test테스트'/>
     </div>
   );
 }
