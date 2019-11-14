@@ -1,9 +1,9 @@
 {
-  "name": "electron-cra-test",
+  "name": "VIBE",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "src/start.js",
+  "main": "src/Delegate.js",
   "build": {
     "appId": "some.id.ofyours",
     "directories": {

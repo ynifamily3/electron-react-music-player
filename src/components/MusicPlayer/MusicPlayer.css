@@ -1,0 +1,15 @@
+.MusicPlayer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+  height: 81px;
+  background-color: rgba(25,25,25,.97);
+}
+
+@media (max-width: 767px) {
+  .MusicPlayer {
+    height: 70px;
+  }
+}

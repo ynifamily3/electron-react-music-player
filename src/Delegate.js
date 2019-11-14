@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray } = require("electron");
+const { app, BrowserWindow, Menu, Tray, ipcMain } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 require("electron-reload");
@@ -11,7 +11,7 @@ let mainWindow; // UI 인터렉션을 위한 메인 윈도우
 
 let appdie = false;
 
-//Menu.setApplicationMenu(null); // 애플리케이션 메뉴를 없앤다.
+// Menu.setApplicationMenu(null); // 애플리케이션 메뉴를 없앤다.
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -37,12 +37,12 @@ function createMainWindow() {
 
 function createWindow() {
   topWindow = new BrowserWindow({
-    show: false,
+    show: true, // 디버깅 필요시 켬
     webPreferences: {
       nodeIntegration: true
     }
   });
-  topWindow.loadURL(`file://${path.join(__dirname, "../worker/entry.html")}`);
+  topWindow.loadURL(`file://${path.join(__dirname, "./worker/worker.html")}`);
   topWindow.on('closed', () => {
     quitApp(); // 백그라운드가 죽는순간 (cmd Q 등) 프로그램은 종료된다.
   })
@@ -51,9 +51,9 @@ function createWindow() {
 
 app.on("ready", createWindow);
 app.on("ready", () => {
-  tray = new Tray(`${path.join(__dirname, "../assets/icon.png")}`);
+  tray = new Tray(`${path.join(__dirname, "../assets/icon-19x19.png")}`);
   const contextMenu = Menu.buildFromTemplate([
-    { id: "open", label: "보기", type: "normal" },
+    { id: "open", label: "VIBE 열기", type: "normal" },
     { type: "separator" },
     { id: "exit", label: "종료", type: "normal" }
   ]);
@@ -104,3 +104,18 @@ function quitApp() {
   topWindow = null;
   app.quit();
 }
+
+// relays ipc data to window
+ipcMain.on("onplay", (event, arg) => {
+  console.log('재생');
+  mainWindow.webContents.send("onplay", arg); // is this safe?
+});
+
+ipcMain.on("onpause", (event, arg) => {
+  console.log('일시정지');
+  mainWindow.webContents.send("onpause", arg);
+});
+
+ipcMain.on("ontimeupdate", (event, arg) => {
+  mainWindow.webContents.send("ontimeupdate", arg);
+});

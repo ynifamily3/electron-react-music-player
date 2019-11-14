@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <audio id="music-player" autoplay controls>
+            <source src="../../assets/test.mp3" type="audio/mp3"/>
+        </audio>
+        <div id="status"></div>
+    </body>
+    <script>
+        const { ipcRenderer } = require('electron');
+        let musicPlayer = document.getElementById('music-player');
+        let status = document.getElementById('status');
+        musicPlayer.onplay = event => {
+           // 재생
+            ipcRenderer.send('onplay', {
+                // target: musicPlayer => 전달이 안된다.
+            });
+        }
+        musicPlayer.onpause = event => {
+            // 일시정지
+            ipcRenderer.send('onpause', {
+                // target: musicPlayer
+            });
+        }
+        musicPlayer.ontimeupdate = event => {
+            // status.innerHTML = Math.floor(musicPlayer.currentTime) + " / " + Math.floor(musicPlayer.duration);
+            ipcRenderer.send('ontimeupdate', {
+                obj: musicPlayer,
+                currentTime: musicPlayer.currentTime,
+                duration: musicPlayer.duration
+            });
+            // ipc한테 메시지를 보내야 함.
+        }
+        // ipc로부터 메시지를 받으면 여기서 컨트롤 해 줘야 함.
+    </script>
+</html>
+<!-- https://developer.mozilla.org/ko/docs/Web/API/Web_Audio_API -->
+<!-- IPC 필요 -->
