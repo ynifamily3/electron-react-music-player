@@ -8,6 +8,12 @@
   background-color: rgba(25,25,25,.97);
 }
 
+.MusicPlayer .controlArea:after, .MusicPlayer .optionArea:after, .MusicPlayer .volumeArea:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
 @media (max-width: 767px) {
   .MusicPlayer {
     height: 70px;

@@ -1,0 +1,172 @@
+/* SongInfo 전체 */
+.SongInfo {
+  margin: 18px 0 0 18px;
+}
+
+/* 썸네일 부분 */
+.MusicPlayer .thumb {
+  float: left;
+  width: 45px;
+  height: 45px;
+  margin-right: 12px;
+}
+
+/* 인포어레이 부분 */
+.MusicPlayer .infoArea {
+  float: left;
+  max-width: 123px;
+  padding-right: 8px;
+}
+
+/* 인포어레이 속 송어레이 */
+.MusicPlayer .songArea {
+  display: block;
+}
+
+.MusicPlayer .song {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  max-width: 100%;
+  font-size: 14px;
+  line-height: 27px;
+  vertical-align: top;
+  font-weight: 700;
+  color: #fff;
+}
+
+.MusicPlayer .song .link {
+  color: #fff;
+}
+
+.MusicPlayer .artist, .MusicPlayer .description {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  max-width: 100%;
+  font-size: 12px;
+  line-height: 18px;
+  vertical-align: top;
+  color: #747474;
+}
+
+.MusicPlayer .linkArtist {
+  color: #999;
+}
+
+.MusicPlayer .artist .linkArtist, .MusicPlayer .description .linkArtist{
+  color: #747474;
+}
+
+
+
+
+
+
+
+/* 옵션 어레이 부분 */
+.MusicPlayer .optionArea {
+  position: relative;
+  float: left;
+}
+
+.MusicPlayer .option_area:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.MusicPlayer .optionArea .btnLike {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.MusicPlayer .btnLike {
+  float: left;
+  width: 38px;
+  height: 46px;
+  text-align: center;
+  
+}
+
+.MusicPlayer .btnLyrics {
+  float: left;
+  width: 38px;
+  height: 46px;
+  vertical-align: top;
+  text-align: center;
+}
+
+.MusicPlayer .btnLike:after, .MusicPlayer .btnLyrics:after {
+  display: inline-block;
+  vertical-align: top;
+  content: "";
+  margin-top: 12px;
+}
+
+.MusicPlayer .btnOption:after {
+  display: inline-block;
+  vertical-align: top;
+  content: "";
+}
+
+.MusicPlayer .btnLike.on:after {
+  background-position: -771px -377px;
+  width: 22px;
+  height: 22px;
+}
+.MusicPlayer .btnLyrics:after {
+  background-position: -771px -317px;
+  width: 22px;
+  height: 22px;
+  margin-top: 12px;
+}
+
+.MusicPlayer .btnOption:after {
+  background-position: -771px -257px;
+  width: 22px;
+  height: 22px;
+  margin-top: 12px;
+}
+
+.MusicPlayer .btnLike.on:after, .MusicPlayer .btnLyrics:after, .MusicPlayer .btnOption:after {
+  background-image: linear-gradient(transparent,transparent),url(/sp_vibe.svg);
+  background-size: 829px 812px;
+}
+
+.dropdownWrap {
+  position: relative;
+}
+
+
+.MusicPlayer .dropdown_wrap {
+  float: left;
+}
+
+.MusicPlayer .btnOption {
+  display: inline-block;
+  width: 38px;
+  height: 46px;
+  vertical-align: top;
+  text-align: center;
+}
+
+
+
+
+@media (max-width: 767px) {
+  .SongInfo {
+    margin: 13px 0 0 18px;
+  }
+  .MusicPlayer .thumb {
+    display: none;
+  }
+  .MusicPlayer .song {
+    display: block;
+  }
+}

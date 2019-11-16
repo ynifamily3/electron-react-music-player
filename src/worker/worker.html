@@ -28,7 +28,7 @@
         musicPlayer.ontimeupdate = event => {
             // status.innerHTML = Math.floor(musicPlayer.currentTime) + " / " + Math.floor(musicPlayer.duration);
             ipcRenderer.send('ontimeupdate', {
-                obj: musicPlayer,
+                obj: musicPlayer, // 전달이 제대로 되지 않는 듯. 아마 primitive data?
                 currentTime: musicPlayer.currentTime,
                 duration: musicPlayer.duration
             });
