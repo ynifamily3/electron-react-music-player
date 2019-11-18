@@ -28,9 +28,9 @@ const SongInfo = props => {
         <a href="#" className="btnOption"></a>
         <div className="lyOption">
           <div className="lySongInfo"></div>
-          <a href="#" className="lyItem">좋아요 취소</a>
-          <a href="#" className="lyItem">내 플레이리스트 추가</a>
-          <a href="#" className="snsShare">공유</a>
+          <a href="#" className="lyItem"></a>
+          <a href="#" className="lyItem"></a>
+          <a href="#" className="snsShare"></a>
         </div>
       </div>
     </div>

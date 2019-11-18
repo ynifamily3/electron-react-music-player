@@ -1,0 +1,63 @@
+.MusicPlayer {
+  .PlayingProgress {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    left: 0;
+    z-index: 20;
+    height: 26px;
+    cursor: pointer;
+
+    .barProgress {
+      position: relative;
+      height: 18px;
+      transform: translateY(8px);
+
+      .barLoad {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background-color: #4b4b4b;
+        transition: height .1s ease-in-out;
+        width: 19.53%; /* will be removed */
+      }
+
+      .barPlay {
+        position: relative;
+        height: 3px;
+        background-color: #ff1150;
+        transition: height .1s ease-in-out;
+        width: 0%; // will be removed
+      }
+
+      .time {
+        display: none;
+        position: absolute;
+        right: 0;
+        bottom: -23px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #ff1e54;
+        vertical-align: top;
+        left: 5px; // will be removed
+      }
+
+      .time .no-drag {
+        user-select: none;
+      }
+    }
+
+    .timeTooltip {
+      display: none;
+      position: absolute;
+      bottom: -23px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #e6e6e6;
+      vertical-align: top;
+      left: 1582px; // will be removed
+    }
+  }
+
+}

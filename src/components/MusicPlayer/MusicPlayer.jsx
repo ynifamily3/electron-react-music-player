@@ -2,11 +2,11 @@ import React from "react";
 import './MusicPlayer.css';
 
 import SongInfo from "./SongInfo/SongInfo";
-// import ControlSection from "./ControlSection/ControlSection";
-// import PlayingProgress from "./PlayingProgress/PlayingProgress";
-// import PlayTime from "./PlayTime/PlayTime";
-// import VolumeArea from "./VolumeArea/VolumeArea";
-// import BtnPlaylistArea from "./BtnPlaylistArea/BtnPlaylistArea";
+import ControlSection from "./ControlSection/ControlSection";
+import PlayingProgress from "./PlayingProgress/PlayingProgress";
+import PlayTime from "./PlayTime/PlayTime";
+import VolumeArea from "./VolumeArea/VolumeArea";
+import BtnPlaylistArea from "./BtnPlaylistArea/BtnPlaylistArea";
 
 const electron = window.require('electron');
 const ipcRenderer  = electron.ipcRenderer;
@@ -24,16 +24,14 @@ ipcRenderer.on("ontimeupdate", (event, arg) => {
 });
 
 const MusicPlayer = props => {
-  /*
+  return (
+  <div className="MusicPlayer">
+    <SongInfo />
     <ControlSection />
     <PlayingProgress />
     <PlayTime />
     <VolumeArea />
     <BtnPlaylistArea />
-  */
-  return (
-  <div className="MusicPlayer">
-    <SongInfo />
   </div>
   )
 };

@@ -37,7 +37,7 @@ function createMainWindow() {
 
 function createWindow() {
   topWindow = new BrowserWindow({
-    show: true, // 디버깅 필요시 켬
+    show: false, // 디버깅 필요시 켬
     webPreferences: {
       nodeIntegration: true
     }

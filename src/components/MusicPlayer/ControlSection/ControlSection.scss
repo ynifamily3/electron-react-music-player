@@ -1,0 +1,125 @@
+.MusicPlayer { /* .player_controller */
+  .ControlSection {
+    position: absolute;
+    top: 13px;
+    right: 345px;
+    left: 345px;
+  }
+
+  .controlArea {
+    position: relative;
+    width: 156px;
+    margin: 0 auto;
+  }
+
+  .btnPlayPrev {
+    float: left;
+    width: 50px;
+    height: 56px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  .btnPlayPrev:after {
+    display: inline-block;
+    vertical-align: top;
+    content: ""; 
+    background-image: linear-gradient(transparent,transparent),url(/sp_vibe.svg);
+    background-size: 829px 812px;
+    background-position: -322px -580px;
+    width: 22px;
+    height: 22px;
+    margin-top: 17px;
+  }
+
+  .btnPlayNext {
+    float: right;
+    width: 50px;
+    height: 56px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  .btnPlayNext:after {
+    display: inline-block;
+    vertical-align: top;
+    content: "";
+    background-image: linear-gradient(transparent,transparent),url(/sp_vibe.svg);
+    background-size: 829px 812px;
+    background-position: -652px -580px;
+    width: 22px;
+    height: 22px;
+    margin-top: 17px;
+  }
+
+  .controlArea:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+
+  .btnNow {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  .btnNow:after {
+    display: inline-block;
+    vertical-align: top;
+    content: "";
+    background-image: linear-gradient(transparent,transparent),url(/sp_vibe.svg);
+    background-size: 829px 812px;
+    background-position: -676px -690px;
+    width: 22px;
+    height: 26px;
+    margin: 15px 0 0 4px;
+  }
+
+  .btnShuffle {
+    position: absolute;
+    top: 0;
+    left: -56px;
+    width: 50px;
+    height: 56px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  .btnShuffle:after {
+    display: inline-block;
+    vertical-align: top;
+    content: "";
+    background-image: linear-gradient(transparent,transparent),url(/sp_vibe.svg);
+    background-size: 829px 812px;
+    background-position: -532px -580px;
+    width: 22px;
+    height: 22px;
+    margin-top: 17px;
+  }
+
+  .btnRepeat {
+    position: absolute;
+    top: 0;
+    right: -56px;
+    width: 50px;
+    height: 56px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  .btnRepeat:after {
+    display: inline-block;
+    vertical-align: top;
+    content: "";
+    background-image: linear-gradient(transparent,transparent),url(/sp_vibe.svg);
+    background-size: 829px 812px;
+    background-position: -771px -707px;
+    width: 22px;
+    height: 22px;
+    margin-top: 17px;
+  }
+}
