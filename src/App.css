@@ -27,11 +27,12 @@ ul {
 }
 
 body {
-    background-color: white;
+    background-color: #fbfbfb;
     font-family: -apple-system, BlinkMacSystemFont, AppleSDGothicNeo, Helvetica, "\B9D1\C740 \ACE0\B515", Malgun Gothic, "\B3CB\C6C0", Dotum, sans-serif;
     font-size: 14px;
     line-height: 1.25em;
 }
+
 a {
     text-decoration: none;
 }
@@ -43,4 +44,10 @@ img {
 
 em {
     font-style: normal;
+}
+
+.App {
+    position: relative;
+    min-height: 100%;
+    overflow-x: hidden;
 }

@@ -1,9 +1,9 @@
 {
-  "name": "VIBE",
+  "name": "vive-desktop-app",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "src/Delegate.js",
+  "main": "src/GUIDelegate.js",
   "build": {
     "appId": "some.id.ofyours",
     "directories": {
