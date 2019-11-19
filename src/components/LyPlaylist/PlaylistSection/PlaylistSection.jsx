@@ -27,6 +27,60 @@ const useStyles = createUseStyles({
     top: "-7px",
     right: "13px"
   },
+  btnShuffle: {
+    display: "inline-block",
+    padding: "7px",
+    verticalAlign: "top",
+    textAlign: "center",
+    "&:after": {
+      display: "inline-block",
+      verticalAlign: "top",
+      content: '""',
+      backgroundPosition: "-532px -580px",
+      width: "22px",
+      height: "22px",
+      backgroundImage: "linear-gradient(transparent,transparent),url(/sp_vibe.svg)",
+      backgroundSize: "829px 812px"
+    },
+    "&.on": {
+      "&:after": {
+        backgroundPosition: "-442px -580px",
+        width: "22px",
+        height: "22px"
+      }
+    }
+
+  },
+  btnRepeat: {
+    display: "inline-block",
+    padding: "7px",
+    verticalAlign: "top",
+    textAlign: "center",
+    "&:after": {
+      display: "inline-block",
+      verticalAlign: "top",
+      content: '""',
+      backgroundPosition: "-771px -707px",
+      width: "22px",
+      height: "22px",
+      backgroundImage: "linear-gradient(transparent,transparent),url(/sp_vibe.svg)",
+      backgroundSize: "829px 812px"
+    },
+    "&.once": {
+      "&:after": {
+        backgroundPosition: "-622px -580px",
+        width: "22px",
+        height: "22px"
+      }
+    },
+    "&.all": {
+      "&:after": {
+        backgroundPosition: "-771px -587px",
+        width: "22px",
+        height: "22px"
+      }
+    }
+  },
   listWrap: {
     position: "absolute",
     top: "62px",
@@ -45,7 +99,7 @@ const useStyles = createUseStyles({
     left: "0"
   }
 });
-
+// 반복재생 : all once, ""
 const PlaylistSection = props => {
   const classes = useStyles();
   return (
@@ -53,8 +107,8 @@ const PlaylistSection = props => {
       <div className={classes.titleArea}>
         <h2 className={classes.title}>이어지는 노래</h2>
         <div className={classes.controlArea}>
-          <a title="재생 방법 변경" className={classes.btnShuffle}></a>
-          <a title="반복 재생 설정" className={classes.btnRepeat}></a>
+          <a title="재생 방법 변경" className={clsx(classes.btnShuffle, "on")}></a>
+          <a title="반복 재생 설정" className={clsx(classes.btnRepeat, "once")}></a>
         </div>
       </div>
       <div className={classes.listWrap}>

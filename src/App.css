@@ -46,6 +46,11 @@ em {
     font-style: normal;
 }
 
+li {
+    list-style-type: none;
+    list-style: none;
+}
+
 .App {
     position: relative;
     min-height: 100%;
