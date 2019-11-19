@@ -45,8 +45,8 @@ const useStyles = createUseStyles({
 // on으로 활성화
 const BtnPlaylistArea = props => {
   const classes = useStyles();
-  return <div className={clsx(classes.BtnPlaylistArea, false&&'on')}>
-    <a href="#" className={clsx(classes.btnPlaylist, false&&'on')}></a>
+  return <div className={clsx(classes.BtnPlaylistArea, 'on')}>
+    <a href="#" className={clsx(classes.btnPlaylist, 'on')}></a>
   </div>
 };
 

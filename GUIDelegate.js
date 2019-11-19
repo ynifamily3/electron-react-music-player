@@ -26,7 +26,7 @@ function createMainWindow() {
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
-      : `file://${path.join(__dirname, "../build/index.html")}`
+      : `file://${path.join(__dirname, "./build/index.html")}`
   );
 
   mainWindow.on("close", event => {
@@ -52,7 +52,7 @@ function createWindow() {
 
 app.on("ready", createWindow);
 app.on("ready", () => {
-  tray = new Tray(`${path.join(__dirname, "../assets/icon-19x19.png")}`);
+  tray = new Tray(`${path.join(__dirname, "./assets/icon-19x19.png")}`);
   const contextMenu = Menu.buildFromTemplate([
     { id: "open", label: "VIBE 열기", type: "normal" },
     { type: "separator" },

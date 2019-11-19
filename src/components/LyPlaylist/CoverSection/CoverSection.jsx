@@ -38,7 +38,7 @@ const CoverSection = props => {
   return (
     <div className={classes.coverSection}>
       <span className={classes.thumbCover}>
-        <img src={'https://musicmeta-phinf.pstatic.net/album/002/859/2859502.jpg?type=r720Fll&v=20190220115904'} alt={'ホップ・ステップ・アップル (홉 스텝 애플) 앨범 커버'} />
+        <img src={'https://musicmeta-phinf.pstatic.net/album/000/642/642016.jpg?type=r720Fll&v=20191105153702'} alt={'노래제목'} />
       </span>
     </div>
   );

@@ -11,7 +11,7 @@ const App = () => {
       <Loading isLoadingCompleted={true} />
       <div id="player">
         <MusicPlayerController />
-        <LyPlaylist show={false} />
+        <LyPlaylist show={true} />
       </div>
     </div>
   );
