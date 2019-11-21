@@ -12,6 +12,7 @@ import My from "./tabs/My";
 import Loading from "./components/Loading/Loading";
 import MusicPlayerController from "./components/MusicPlayerController/MusicPlayer"; // 컨트롤러
 import LyPlaylist from "./components/LyPlaylist/LyPlaylist";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 const App = () => {
   return (
@@ -22,7 +23,9 @@ const App = () => {
           <MusicPlayerController />
           <LyPlaylist show={false} />
         </div>
-        {/* 사이드바가 들어가야 합니다. */}
+        <div>
+          <Sidebar />
+        </div>
         {/* 컨테이너가 들어가야 합니다. 이곳이 tabs컴포넌트를 토글 형식으로 전환해야 하는 곳임. */}
         <div id="container" className="container">
           <Search activated={false} />

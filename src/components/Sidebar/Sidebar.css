@@ -1,0 +1,72 @@
+.header.side_bar {
+  bottom: 81px;
+  left: 0;
+  width: 225px;
+}
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 60;
+  background-color: #000;
+}
+.header.side_bar .my_menu {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: scrollbar;
+  position: absolute;
+  top: 73px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0 15px 40px;
+}
+
+.header.side_bar .menu_area {
+  margin-top: 34px;
+}
+body,
+button,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+table,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+.header .link_menu .text {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.header .menu_item + .menu_item {
+  margin-top: 8px;
+}
+
+.header .link_menu:before {
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  content: "";
+}
