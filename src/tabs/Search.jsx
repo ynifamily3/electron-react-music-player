@@ -7,7 +7,7 @@ const Search = props => {
   const { activated } = props;
   return (
     <div className={clsx("tab", "tab-search", activated && "activated")}>
-      DJ 페이지
+      검색 페이지
     </div>
   );
 };

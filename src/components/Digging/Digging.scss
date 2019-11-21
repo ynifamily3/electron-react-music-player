@@ -1,0 +1,270 @@
+.today_mag {
+  position: relative;
+  height: 400px;
+  background-color: #f2f2f2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  .link_wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 20;
+    width: 1160px;
+    height: 322px;
+    transform: translate(-50%, -50%);
+  }
+
+  .thumb {
+    overflow: hidden;
+    position: relative;
+    float: left;
+    height: 100%;
+    margin-right: 50px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .link_wrap:hover {
+    .thumb:after {
+      opacity: 1;
+    }
+    .btn_play_now {
+      opacity: 1;
+    }
+    .btn_option_now {
+      opacity: 1;
+    }
+  }
+
+  .link {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  .link:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+  .thumb:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.25));
+    content: "";
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+  }
+  .text_area {
+    overflow: hidden;
+    padding: 62px 50px 0 0;
+  }
+
+  .btn_play_now {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 25;
+    padding: 6px;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+  }
+
+  .btn_play_now:focus {
+    opacity: 1;
+  }
+
+  .btn_play_now:before {
+    // 이게 안 먹는다.. => 일단 포기
+    background-color: hsla(0, 0%, 100%, 0.85);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    -webkit-transition: -webkit-transform 0.2s ease-in;
+    transition: -webkit-transform 0.2s ease-in;
+    transition: transform 0.2s ease-in;
+    transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+    width: 41px;
+    height: 41px;
+  }
+
+  .btn_play_now:hover:before {
+    background-color: #fff;
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+  }
+
+  .btn_play_now:after {
+    background-image: linear-gradient(transparent, transparent),
+      url(/sp_vibe.svg);
+    background-size: 829px 812px;
+    background-position: -805px -284px;
+    width: 16px;
+    height: 19px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "";
+    transform: translate(-7px, -9px);
+    -webkit-transform: translate(-6px, -10px);
+  }
+  .icon_mag {
+    height: 28px;
+    max-width: 100%;
+    width: auto;
+  }
+
+  .info {
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    display: block;
+    display: -webkit-box;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #939393;
+    will-change: transform;
+  }
+  .sub {
+    margin-top: 9px;
+    .item {
+      display: inline-block;
+      font-size: 13px;
+      line-height: 17px;
+      vertical-align: top;
+      color: #939393;
+    }
+    .item + .item:before {
+      display: inline-block;
+      vertical-align: top;
+      content: "";
+      width: 3px;
+      height: 3px;
+      margin: 7px 6px 0;
+      background-color: #939393;
+      border-radius: 50%;
+    }
+  }
+}
+
+.today_mag.pick {
+  .thumb {
+    width: 322px;
+  }
+  .img_thumb {
+    width: 100%;
+    height: 100%;
+  }
+  .dropdown_wrap {
+    position: absolute;
+    bottom: 6px;
+    left: 274px;
+    width: 42px;
+    height: 42px;
+    z-index: 25;
+    .btn_option_now {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
+      opacity: 0;
+      -webkit-transition: opacity 0.2s ease-in;
+      transition: opacity 0.2s ease-in;
+    }
+    .btn_option_now:focus {
+      opacity: 1;
+    }
+    .btn_option_now:after {
+      background-image: linear-gradient(transparent, transparent),
+        url(/sp_vibe.svg);
+      background-size: 829px 812px;
+      background-position: -629px -523px;
+      width: 42px;
+      height: 42px;
+      display: block;
+      content: "";
+    }
+    .ly_option {
+      top: 42px;
+      right: 0;
+      left: auto;
+      .spi_sns_share:hover {
+        background-color: #f3f3f3;
+      }
+    }
+  }
+  .title {
+    overflow: hidden;
+    display: block;
+    margin-top: 14px;
+    font-size: 30px;
+    line-height: 38px;
+    font-weight: 700;
+    white-space: pre-line;
+    color: #232323;
+  }
+}
+
+.ly_option {
+  display: none;
+  position: absolute;
+  z-index: 15;
+  padding: 11px 0;
+  white-space: nowrap;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  .ly_item {
+    display: block;
+    width: 100%;
+    padding: 6px 20px 7px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: left;
+    color: #232323;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .spi_sns_share {
+    display: block;
+    width: 100%;
+    padding: 6px 20px 7px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: left;
+    color: #232323;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .ly_item:active {
+    background-color: #f3f3f3;
+  }
+  .ly_item:hover {
+    background-color: #f3f3f3;
+  }
+}
+
+.more_option {
+  display: block;
+  margin: 0 auto;
+  .ly_option {
+    top: 0;
+    left: 44px;
+  }
+}
+
+.dropdown_wrap {
+  position: relative;
+}

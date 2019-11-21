@@ -1,8 +1,21 @@
 import React, { useCallback } from "react";
 import "./Sidebar.css";
 import { preventCallback } from "../../utility/index";
+import { useDispatch } from "react-redux";
+import * as TYPE from "../../store/types";
+import { ActivateWebview } from "../../store/modules/webView";
 
 const Sidebar = props => {
+  const callback = (arg, e) => {
+    return e => {
+      //preventCallback(e);
+      console.log(e);
+      console.log(arg);
+      dispatch(ActivateWebview(arg));
+    };
+  };
+
+  const dispatch = useDispatch();
   return (
     <header className="header side_bar">
       <div className="menu_area">
@@ -10,7 +23,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={useCallback(e => preventCallback(e), [])}
+              onClick={callback(TYPE.TODAY)}
               role="menuitem"
               aria-current="false"
               className="link_menu link_today"
@@ -21,7 +34,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={useCallback(e => preventCallback(e), [])}
+              onClick={callback(TYPE.CHART)}
               role="menuitem"
               aria-current="false"
               className="link_menu link_chart"
@@ -32,7 +45,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={useCallback(e => preventCallback(e), [])}
+              onClick={callback(TYPE.DJ)}
               role="menuitem"
               aria-current="false"
               className="link_menu link_dj"
@@ -43,7 +56,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={useCallback(e => preventCallback(e), [])}
+              onClick={callback(TYPE.SEARCH)}
               role="menuitem"
               aria-current="false"
               className="link_menu link_mag"
