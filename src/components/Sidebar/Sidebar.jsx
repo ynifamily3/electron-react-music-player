@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./Sidebar.css";
+import { preventCallback } from "../../utility/index";
 
 const Sidebar = props => {
   return (
@@ -9,9 +10,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={e => {
-                e.preventDefault();
-              }}
+              onClick={useCallback(e => preventCallback(e), [])}
               role="menuitem"
               aria-current="false"
               className="link_menu link_today"
@@ -22,9 +21,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={e => {
-                e.preventDefault();
-              }}
+              onClick={useCallback(e => preventCallback(e), [])}
               role="menuitem"
               aria-current="false"
               className="link_menu link_chart"
@@ -35,9 +32,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={e => {
-                e.preventDefault();
-              }}
+              onClick={useCallback(e => preventCallback(e), [])}
               role="menuitem"
               aria-current="false"
               className="link_menu link_dj"
@@ -48,9 +43,7 @@ const Sidebar = props => {
           <li role="presentation" className="menu_item">
             <a
               href="#"
-              onClick={e => {
-                e.preventDefault();
-              }}
+              onClick={useCallback(e => preventCallback(e), [])}
               role="menuitem"
               aria-current="false"
               className="link_menu link_mag"
