@@ -27,7 +27,6 @@ ul {
 }
 
 body {
-    background-color: #fbfbfb;
     font-family: -apple-system, BlinkMacSystemFont, AppleSDGothicNeo, Helvetica, "\B9D1\C740 \ACE0\B515", Malgun Gothic, "\B3CB\C6C0", Dotum, sans-serif;
     font-size: 14px;
     line-height: 1.25em;
@@ -52,6 +51,13 @@ li {
 }
 
 .App {
+    position: relative;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+.home {
+    background-color: #fbfbfb;
     position: relative;
     min-height: 100%;
     overflow-x: hidden;

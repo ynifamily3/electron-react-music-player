@@ -1,17 +1,13 @@
-const { app, BrowserWindow, Menu, Tray, ipcMain } = require("electron");
+const { app, BrowserWindow, Menu, Tray } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 require("electron-reload");
 
 let tray = null; // 트레이
-
-let topWindow; // 노래 재생을 위한 백그라운드 창, 기본적으로 숨겨져 있다.
-
 let mainWindow; // UI 인터렉션을 위한 메인 윈도우
 
-let appdie = false;
-
-// Menu.setApplicationMenu(null); // 애플리케이션 메뉴를 없앤다.
+let appdie = false; // 앱이 종료되는 플래그
+// Menu.setApplicationMenu(null); // 애플리케이션 메뉴를 없앤다. (단축키가 안되서 주석처리)
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -30,34 +26,22 @@ function createMainWindow() {
   );
 
   mainWindow.on("close", event => {
+    console.log(event);
     if (appdie) return;
     event.preventDefault(); // 창의 닫힘을 막고
     mainWindow.hide(); // hide 한다.
   });
 }
 
-function createWindow() {
-  topWindow = new BrowserWindow({
-    show: false, // 디버깅 필요시 켬
-    webPreferences: {
-      nodeIntegration: true
-    }
-  });
-  topWindow.loadURL(`file://${path.join(__dirname, "./worker/worker.html")}`);
-  topWindow.on('closed', () => {
-    quitApp(); // 백그라운드가 죽는순간 (cmd Q 등) 프로그램은 종료된다.
-  })
-  createMainWindow();
-}
-
-app.on("ready", createWindow);
-app.on("ready", () => {
+function createTray() {
   tray = new Tray(`${path.join(__dirname, "./assets/icon-19x19.png")}`);
+  
   const contextMenu = Menu.buildFromTemplate([
     { id: "open", label: "VIBE 열기", type: "normal" },
     { type: "separator" },
     { id: "exit", label: "종료", type: "normal" }
   ]);
+  
   contextMenu.getMenuItemById("open").click = function(e) {
     if (!mainWindow) {
       createMainWindow();
@@ -82,7 +66,7 @@ app.on("ready", () => {
       mainWindow.focus();
     }
   });
-});
+};
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
@@ -99,24 +83,11 @@ app.on("activate", () => {
   }
 });
 
+app.on("ready", createMainWindow);
+app.on("ready", createTray);
+
 function quitApp() {
   appdie = true;
   mainWindow = null;
-  topWindow = null;
   app.quit();
 }
-
-// relays ipc data to window
-ipcMain.on("onplay", (event, arg) => {
-  console.log('재생');
-  mainWindow.webContents.send("onplay", arg); // is this safe?
-});
-
-ipcMain.on("onpause", (event, arg) => {
-  console.log('일시정지');
-  mainWindow.webContents.send("onpause", arg);
-});
-
-ipcMain.on("ontimeupdate", (event, arg) => {
-  mainWindow.webContents.send("ontimeupdate", arg);
-});

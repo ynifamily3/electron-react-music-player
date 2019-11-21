@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { createUseStyles } from "react-jss";
-import clsx from 'clsx';
+import clsx from "clsx";
 
 const useStyles = createUseStyles({
   BtnPlaylistArea: {
@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
     }
   },
   btnPlaylist: {
-    display: 'inline-block',
+    display: "inline-block",
     width: "100%",
     height: "63px",
     marginTop: "18px",
@@ -32,22 +32,25 @@ const useStyles = createUseStyles({
     "&:after": {
       display: "inline-block",
       verticalAlign: "top",
-      content:'""',
-      backgroundImage: "linear-gradient(transparent, transparent), url(/sp_vibe.svg)",
-      backgroundSize: '829px 812px',
-      backgroundPosition: '-578px -690px',
-      width: '26px',
-      height: '26px',
-      marginTop: '9px'
+      content: '""',
+      backgroundImage:
+        "linear-gradient(transparent, transparent), url(/sp_vibe.svg)",
+      backgroundSize: "829px 812px",
+      backgroundPosition: "-578px -690px",
+      width: "26px",
+      height: "26px",
+      marginTop: "9px"
     }
   }
 });
 // on으로 활성화
 const BtnPlaylistArea = props => {
   const classes = useStyles();
-  return <div className={clsx(classes.BtnPlaylistArea, 'on')}>
-    <a href="#" className={clsx(classes.btnPlaylist, 'on')}></a>
-  </div>
+  return (
+    <div className={clsx(classes.BtnPlaylistArea, "on")}>
+      <a href="#" className={clsx(classes.btnPlaylist, "on")}></a>
+    </div>
+  );
 };
 
 export default BtnPlaylistArea;
