@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import "./Container.scss";
 
@@ -15,12 +15,33 @@ import MusicPlayerController from "./components/MusicPlayerController/MusicPlaye
 import LyPlaylist from "./components/LyPlaylist/LyPlaylist";
 import Sidebar from "./components/Sidebar/Sidebar";
 import * as Type from "./store/types";
+
+import axios from "axios";
+
+import { setDeviceID } from "./store/modules/deviceId";
 /*
     width: 100%;
     position: relative;
 */
+
 const App = () => {
   const { activatedWebView } = useSelector(state => state.webView, []);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // https://apis.naver.com/nmwebplayer/musicapiweb/device/VIBE_WEB/deviceId.json
+    axios
+      .get(
+        `https://apis.naver.com/nmwebplayer/musicapiweb/device/VIBE_WEB/deviceId.json`
+      )
+      .then(resp => {
+        console.log("***");
+        console.log(resp.data.response.result.deviceIdInfo.hashedDeviceId);
+        dispatch(
+          setDeviceID(resp.data.response.result.deviceIdInfo.hashedDeviceId)
+        );
+      });
+  }, []);
 
   return (
     <div className="App">
