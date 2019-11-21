@@ -26,7 +26,6 @@ function createMainWindow() {
   );
 
   mainWindow.on("close", event => {
-    console.log(event);
     if (appdie) return;
     event.preventDefault(); // 창의 닫힘을 막고
     mainWindow.hide(); // hide 한다.
@@ -35,13 +34,13 @@ function createMainWindow() {
 
 function createTray() {
   tray = new Tray(`${path.join(__dirname, "./assets/icon-19x19.png")}`);
-  
+
   const contextMenu = Menu.buildFromTemplate([
     { id: "open", label: "VIBE 열기", type: "normal" },
     { type: "separator" },
     { id: "exit", label: "종료", type: "normal" }
   ]);
-  
+
   contextMenu.getMenuItemById("open").click = function(e) {
     if (!mainWindow) {
       createMainWindow();
@@ -66,7 +65,7 @@ function createTray() {
       mainWindow.focus();
     }
   });
-};
+}
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
