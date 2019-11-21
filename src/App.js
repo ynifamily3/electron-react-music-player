@@ -19,6 +19,7 @@ import * as Type from "./store/types";
 import axios from "axios";
 
 import { setDeviceID } from "./store/modules/deviceId";
+import { streamingUrlGenerate } from "./utility/index";
 /*
     width: 100%;
     position: relative;
