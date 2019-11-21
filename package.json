@@ -33,7 +33,7 @@
   "scripts": {
     "electron": "cross-env NODE_ENV=dev nodemon --exec \"electron .\"",
     "electron-cold": "cross-env NODE_ENV=dev electron .",
-    "start": "cross-env BROWSER=none npm run react-start",
+    "start": "cross-env BROWSER=none PORT=80 npm run react-start",
     "react-start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

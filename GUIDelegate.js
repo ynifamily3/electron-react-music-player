@@ -21,7 +21,7 @@ function createMainWindow() {
   mainWindow.setMenu(null);
   mainWindow.loadURL(
     isDev
-      ? "http://localhost:3000"
+      ? "http://local.vibe.naver.com"
       : `file://${path.join(__dirname, "./build/index.html")}`
   );
 
