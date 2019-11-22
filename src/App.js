@@ -61,7 +61,7 @@ const App = () => {
           trackId +
           "&deviceType=VIBE_WEB&deviceId=" +
           deviceId +
-          "&play.mediaSourceType=AAC_320_ENC&play.aacSupported=Y"
+          "&play.mediaSourceType=AAC_096_ENC&play.aacSupported=Y"
       );
       console.log("streaming ");
       console.log(response);
@@ -73,8 +73,16 @@ const App = () => {
 
       return m3u8Result;
     };
-    _streamingUrlGenerate(deviceId, 30759079);
+    _streamingUrlGenerate(deviceId, 30759079); // play song
   }, [deviceId]);
+
+  useEffect(() => {
+    if (source) {
+      alert(source);
+      var player = window.videojs("musicPlayer");
+      player.play();
+    }
+  }, [source]);
 
   return (
     <div className="App">
@@ -83,8 +91,8 @@ const App = () => {
           paddingLeft: "300px"
         }}
       >
-        <video width="352" height="288" controls autoPlay>
-          <source type="AAC_096_ENC" src={source} />
+        <video width="352" height="288" controls id="musicPlayer">
+          <source type="application/x-mpegURL" src={source} />
         </video>
       </div>
 
