@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -6,7 +6,8 @@ const useStyles = createUseStyles({
     position: "absolute",
     top: "24px",
     right: "110px",
-    "&:after": { // MusicPlayer 산하에 있는 거지만 여기서만 적용되는거라 생략함.
+    "&:after": {
+      // MusicPlayer 산하에 있는 거지만 여기서만 적용되는거라 생략함.
       display: "block",
       content: '""',
       clear: "both"
@@ -20,7 +21,8 @@ const useStyles = createUseStyles({
       display: "inline-block",
       verticalAlign: "top",
       content: '""',
-      backgroundImage: "linear-gradient(transparent,transparent),url(/sp_vibe.svg)",
+      backgroundImage:
+        "linear-gradient(transparent,transparent),url(/sp_vibe.svg)",
       backgroundSize: "829px 812px",
       backgroundPosition: "-805px -768px",
       width: "17px",
@@ -52,18 +54,23 @@ const useStyles = createUseStyles({
 
 const VolumeArea = props => {
   const classes = useStyles();
-  return <div className={classes.VolumeArea}>
-    <a href="#" className={classes.btnVolume}></a>
-    <div className={classes.barVolume}>
-      <div className={classes.barStatus}>
-        <div className={classes.barNow} style={{
-          width: "50%" // will be removed
-        }}>
-          <span className={classes.handle}></span>
+  return (
+    <div className={classes.VolumeArea}>
+      <a href="#" className={classes.btnVolume}></a>
+      <div className={classes.barVolume}>
+        <div className={classes.barStatus}>
+          <div
+            className={classes.barNow}
+            style={{
+              width: `${props.volume}%` // will be removed
+            }}
+          >
+            <span className={classes.handle}></span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  );
 };
 
 export default VolumeArea;

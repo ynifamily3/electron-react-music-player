@@ -3,8 +3,8 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   PlayTime: {
-    position: 'absolute',
-    right: '258px',
+    position: "absolute",
+    right: "258px",
     top: "34px",
     fontSize: "12px",
     lineHeight: "14px",
@@ -27,10 +27,12 @@ const useStyles = createUseStyles({
 
 const PlayTime = props => {
   const classes = useStyles();
-  return <div className={classes.PlayTime}>
-    <span className="now">00:00</span>
-    <span className="remain">05:07</span>
-  </div>;
+  return (
+    <div className={classes.PlayTime}>
+      <span className="now">{Math.floor(props.position)}</span>
+      <span className="remain">01:00</span>
+    </div>
+  );
 };
 
 export default PlayTime;

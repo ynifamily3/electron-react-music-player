@@ -10,8 +10,6 @@ const initialState = {
 };
 
 export default function devicdId(state = initialState, action) {
-  console.log("&&&&&");
-  console.log(action);
   switch (action.type) {
     case DEVICEID:
       return {

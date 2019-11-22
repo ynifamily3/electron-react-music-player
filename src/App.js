@@ -20,6 +20,12 @@ import axios from "axios";
 
 import { setDeviceID } from "./store/modules/deviceId";
 import { streamingUrlGenerate } from "./utility/index";
+import {
+  togglePlayPause,
+  setPosition,
+  setVolume,
+  setSource
+} from "./store/modules/playingStatus";
 /*
     width: 100%;
     position: relative;
@@ -28,61 +34,54 @@ import { streamingUrlGenerate } from "./utility/index";
 const App = () => {
   const { activatedWebView } = useSelector(state => state.webView, []);
   const { deviceId } = useSelector(state => state.deviceId, []);
-  const [source, setSource] = useState(null);
+  const playingStatus = useSelector(state => state.playingStatus, []);
+
+  // const [source, setSource] = useState(null);
+
   const dispatch = useDispatch();
-  // useEffect(async () => {
-  //   console.log("device id ");
-  //   console.log(deviceId);
-  //   if (deviceId) {
-  //     await streamingUrlGenerate(deviceId, 30759079);
-  //   }
-  // }, [deviceId]);
   useEffect(() => {
-    // https://apis.naver.com/nmwebplayer/musicapiweb/device/VIBE_WEB/deviceId.json
     axios
       .get(
         `https://apis.naver.com/nmwebplayer/musicapiweb/device/VIBE_WEB/deviceId.json`
       )
       .then(resp => {
-        console.log("***");
-        console.log(resp.data.response.result.deviceIdInfo.hashedDeviceId);
         dispatch(
           setDeviceID(resp.data.response.result.deviceIdInfo.hashedDeviceId)
         );
       });
+
+    const musicPlayer = document.getElementById("musicPlayer");
+    // 이벤트 리스너 등록
+    musicPlayer.onplay = e => {
+      // console.log("재생 시작");
+      dispatch(togglePlayPause());
+    };
+
+    musicPlayer.onpause = e => {
+      // console.log("일시정지");
+      dispatch(togglePlayPause());
+    };
+
+    musicPlayer.ontimeupdate = e => {
+      // console.log("업데이트");
+      dispatch(setPosition(musicPlayer.currentTime));
+    };
   }, []);
 
   useEffect(() => {
-    const _streamingUrlGenerate = async (deviceId, trackId) => {
-      if (!deviceId) return;
-      let m3u8Result;
-      const response = await axios.get(
-        "https://apis.naver.com/nmwebplayer/music/stplay_trackStPlay_NO_HMAC?play.trackId=" +
-          trackId +
-          "&deviceType=VIBE_WEB&deviceId=" +
-          deviceId +
-          "&play.mediaSourceType=AAC_096_ENC&play.aacSupported=Y"
-      );
-      console.log("streaming ");
-      console.log(response);
-
-      if (response) {
-        m3u8Result = response.data.moduleInfo.hlsManifestUrl;
-        setSource(m3u8Result);
-      }
-
-      return m3u8Result;
+    const fetchm3u8 = async (deviceId, trackId) => {
+      const x = await streamingUrlGenerate(deviceId, trackId);
+      dispatch(setSource(x));
     };
-    _streamingUrlGenerate(deviceId, 30759079); // play song
+    fetchm3u8(deviceId, 30759079);
   }, [deviceId]);
 
   useEffect(() => {
-    if (source) {
-      alert(source);
+    if (playingStatus.source) {
       var player = window.videojs("musicPlayer");
-      player.play();
+      player.play(); //  => 노드가 생겼다 없어지는 과정에서 오류가 트리거됨.
     }
-  }, [source]);
+  }, [playingStatus.source]);
 
   return (
     <div className="App">
@@ -91,16 +90,23 @@ const App = () => {
           paddingLeft: "300px"
         }}
       >
-        <video width="352" height="288" controls id="musicPlayer">
-          <source type="application/x-mpegURL" src={source} />
+        <video
+          width="352"
+          height="288"
+          controls
+          id="musicPlayer"
+          volume="0.5"
+          key={playingStatus.source}
+        >
+          <source type="application/x-mpegURL" src={playingStatus.source} />
         </video>
       </div>
 
       <div className="home">
         <Loading isLoadingCompleted={true} /> {/* 로딩 창 */}
         <div id="player">
-          <MusicPlayerController />
-          <LyPlaylist show={false} />
+          <MusicPlayerController playingStatus={playingStatus} />
+          <LyPlaylist show={playingStatus.playlistOpened} />
         </div>
         <div>
           <Sidebar />

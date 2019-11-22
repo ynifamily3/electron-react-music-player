@@ -12,10 +12,8 @@ const initialState = {
 };
 
 export default function webView(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case ACTIVATE_WEBVIEW:
-      console.log("HERE");
       return {
         ...state,
         activatedWebView: action.activatedWebView

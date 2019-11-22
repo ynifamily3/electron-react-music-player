@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import clsx from "clsx";
 import axios from "axios";
 import produce from "immer";
@@ -7,10 +7,41 @@ import produce from "immer";
 import "./TabsCommon.scss";
 import "./Chart.scss";
 
+import { streamingUrlGenerate } from "../utility/index";
+
+import { PlayPause, setAll, setSource } from "../store/modules/playingStatus";
+
 const Chart = props => {
   const { activated } = props;
   const [top100, setTop100] = useState(false);
   const { deviceId } = useSelector(state => state.deviceId, []);
+  const dispatch = useDispatch();
+
+  const playMusic = (payload, e) => e => {
+    console.log("곡정보 디스패칭");
+    console.log(payload.trackTitle);
+
+    // 소스를 바꿔서 곡을 재생시키면 될듯. 소스도 상태관리. 필요.
+    const fetchm3u8 = async (deviceId, trackId) => {
+      const x = await streamingUrlGenerate(deviceId, trackId);
+      // alert("before dispatch new source");
+      // dispatch(setSource(x));
+      dispatch(
+        setAll({
+          playingstate: PlayPause.PLAYING,
+          position: 0,
+          duration: 60, // 1분 미리듣기..
+          volume: 100,
+          trackId: payload.trackId,
+          trackTitle: payload.trackTitle,
+          artists: payload.artists,
+          imageUrl: payload.imageUrl,
+          source: x
+        })
+      );
+    };
+    fetchm3u8(deviceId, payload.trackId);
+  };
 
   useEffect(() => {
     if (!activated) return;
@@ -48,7 +79,9 @@ const Chart = props => {
           <ol>
             {top100.map((x, i) => {
               return (
-                <li key={x.trackId}>
+                <li key={x.trackId} onClick={playMusic(x)}>
+                  {" "}
+                  {/* 원래는 재생목록에 push 해야 함 .*/}
                   <div style={{ padding: "30px" }}>
                     <img src={x.imageUrl} />
                     <div style={{ marginTop: "15px" }}>{x.trackTitle}</div>

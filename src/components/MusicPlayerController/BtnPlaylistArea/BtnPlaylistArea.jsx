@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { togglePlayListOpenClose } from "../../../store/modules/playingStatus";
 import { createUseStyles } from "react-jss";
 import clsx from "clsx";
 
@@ -46,9 +48,19 @@ const useStyles = createUseStyles({
 // on으로 활성화
 const BtnPlaylistArea = props => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const togglePlaylistEvt = () => {
+    dispatch(togglePlayListOpenClose());
+  };
   return (
-    <div className={clsx(classes.BtnPlaylistArea, "on")}>
-      <a href="#" className={clsx(classes.btnPlaylist, "on")}></a>
+    <div
+      className={clsx(classes.BtnPlaylistArea, props.playlistOpened && "on")}
+      onClick={togglePlaylistEvt}
+    >
+      <a
+        href="#"
+        className={clsx(classes.btnPlaylist, props.playlistOpened && "on")}
+      ></a>
     </div>
   );
 };
