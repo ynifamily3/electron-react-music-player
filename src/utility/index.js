@@ -15,10 +15,14 @@ const streamingUrlGenerate = async (deviceId, trackId) => {
       deviceId +
       "&play.mediaSourceType=AAC_320_ENC&play.aacSupported=Y"
   );
+  console.log("streaming ");
   console.log(response);
+
   if (response) {
     m3u8Result = response.data.moduleInfo.hlsManifestUrl;
   }
+
+  return m3u8Result;
 
   if (m3u8Result) {
     const response = await axios.get(m3u8Result);

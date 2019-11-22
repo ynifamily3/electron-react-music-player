@@ -16,7 +16,7 @@ export default function devicdId(state = initialState, action) {
     case DEVICEID:
       return {
         ...state,
-        devicdId: action
+        deviceId: action.action
       };
     default:
       return state;

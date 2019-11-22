@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import "./Container.scss";
@@ -27,8 +27,16 @@ import { streamingUrlGenerate } from "./utility/index";
 
 const App = () => {
   const { activatedWebView } = useSelector(state => state.webView, []);
+  const { deviceId } = useSelector(state => state.deviceId, []);
+  const [source, setSource] = useState(null);
   const dispatch = useDispatch();
-
+  // useEffect(async () => {
+  //   console.log("device id ");
+  //   console.log(deviceId);
+  //   if (deviceId) {
+  //     await streamingUrlGenerate(deviceId, 30759079);
+  //   }
+  // }, [deviceId]);
   useEffect(() => {
     // https://apis.naver.com/nmwebplayer/musicapiweb/device/VIBE_WEB/deviceId.json
     axios
@@ -44,8 +52,42 @@ const App = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const _streamingUrlGenerate = async (deviceId, trackId) => {
+      if (!deviceId) return;
+      let m3u8Result;
+      const response = await axios.get(
+        "https://apis.naver.com/nmwebplayer/music/stplay_trackStPlay_NO_HMAC?play.trackId=" +
+          trackId +
+          "&deviceType=VIBE_WEB&deviceId=" +
+          deviceId +
+          "&play.mediaSourceType=AAC_320_ENC&play.aacSupported=Y"
+      );
+      console.log("streaming ");
+      console.log(response);
+
+      if (response) {
+        m3u8Result = response.data.moduleInfo.hlsManifestUrl;
+        setSource(m3u8Result);
+      }
+
+      return m3u8Result;
+    };
+    _streamingUrlGenerate(deviceId, 30759079);
+  }, [deviceId]);
+
   return (
     <div className="App">
+      <div
+        style={{
+          paddingLeft: "300px"
+        }}
+      >
+        <video width="352" height="288" controls autoPlay>
+          <source type="AAC_096_ENC" src={source} />
+        </video>
+      </div>
+
       <div className="home">
         <Loading isLoadingCompleted={true} /> {/* 로딩 창 */}
         <div id="player">

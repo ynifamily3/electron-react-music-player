@@ -10,7 +10,7 @@ import "./Chart.scss";
 const Chart = props => {
   const { activated } = props;
   const [top100, setTop100] = useState(false);
-  const asdf = useSelector(state => state, []);
+  const { deviceId } = useSelector(state => state.deviceId, []);
 
   useEffect(() => {
     if (!activated) return;
@@ -41,7 +41,7 @@ const Chart = props => {
     <div className={clsx("tab", "tab-chart", activated && "activated")}>
       <div className="today-chart-100">
         <div className="title">오늘 Top 100</div>
-        <div>{JSON.stringify(asdf)}</div>
+        <div>{deviceId}</div>
         {!top100 ? (
           <div>로딩중입니다...</div>
         ) : (
